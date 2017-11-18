@@ -5,7 +5,7 @@ This is the code for [this](https://youtu.be/yz6dNf7X7SA) video on Youtube by Si
 
 ## Dependencies (pip install) 
 ```
-cv2
+PIL
 tensorflow( >=1.0)
 scipy
 numpy
