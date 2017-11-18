@@ -6,7 +6,6 @@
 import os
 import tensorflow as tf
 import numpy as np
-import cv2
 import random
 import scipy.misc
 from utils import *
@@ -16,7 +15,6 @@ slim = tf.contrib.slim
 HEIGHT, WIDTH, CHANNEL = 128, 128, 3
 BATCH_SIZE = 64
 EPOCH = 5000
-os.environ['CUDA_VISIBLE_DEVICES'] = '15'
 version = 'newPokemon'
 newPoke_path = './' + version
 
@@ -26,7 +24,7 @@ def lrelu(x, n, leak=0.2):
 def process_data():   
     current_dir = os.getcwd()
     # parent = os.path.dirname(current_dir)
-    pokemon_dir = os.path.join(current_dir, 'data')
+    pokemon_dir = os.path.join(current_dir, 'resizeBlack')
     images = []
     for each in os.listdir(pokemon_dir):
         images.append(os.path.join(pokemon_dir,each))
@@ -164,7 +162,6 @@ def discriminator(input, is_train, reuse=False):
 
 def train():
     random_dim = 100
-    print(os.environ['CUDA_VISIBLE_DEVICES'])
     
     with tf.variable_scope('input'):
         #real and fake image placholders
@@ -213,7 +210,7 @@ def train():
     print('batch size: %d, batch num per epoch: %d, epoch num: %d' % (batch_size, batch_num, EPOCH))
     print('start training...')
     for i in range(EPOCH):
-        print(i)
+        print("Running epoch {}/{}...".format(i, EPOCH))
         for j in range(batch_num):
             print(j)
             d_iters = 5
